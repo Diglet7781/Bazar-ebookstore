@@ -158,6 +158,10 @@
 								<button class="btn btn-danger btn-sm" name="delete" type="submit"><i class="fa fa-trash-o"></i></button>							
 							</td>
 						</tr>
+                  <?php 
+                  }
+               }
+               ?>
 					</tbody>
 					
                     
@@ -185,10 +189,7 @@
 						</tr>
 					</tfoot>
 				</table>
-            <?php 
-						}
-					}
-					?>
+            
 </div>
 </main>
     

@@ -16,14 +16,13 @@
             color: #FFFFFF;
     text-decoration: none;
          }
-     
-         </style>
+     </style>
 </head>
    <body>
       <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light" >
          <div class="navbar-left">
             <a class="navbar-brand" href="homePage.php">
-            <img class="logo-dark" src="nav2.png" width="50" height="50" class="d-inline-block align-top" alt="" alt="logo"> 
+            <img class="logo-dark" src="nav2.png" width="50" height="50" class="d-inline-block align-top" alt="" alt="logo">
             </a>
             <div class="navbar-brand mb-1 h4 mr-lg-5">
                </span>
@@ -43,14 +42,17 @@
                </li>
                <li class="nav-item">
                   <a class="nav-link mr-lg-2" href="#" tabindex="-1" >Deals <span class="sr-only">(current)</span></a>
-            
+
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-               <input class="form-control mr-sm-2" type="search" placeholder="Search1">
-               <button class="btn btn-outline-success my-2 my-sm-0 mr-lg-5 mr-5" type="submit">Search</button>
+
+            <!--here goes the code for search functionality -->
+            <form class="form-inline my-2 my-lg-0" action="search.php" method="post">
+               <input class="form-control mr-sm-2" type="search" placeholder="Search" name="search">
+               <button class="btn btn-outline-success my-2 my-sm-0 mr-lg-5 mr-5" type="submit" name="searchbtn">Search</button>
             </form>
+            <!--end of search functionality code -->
             <div class = "button">
-            <button type="button" class="btn btn-danger" id="anchor"><?php 
+            <button type="button" class="btn btn-danger" id="anchor"><?php
                session_start();
                     if(isset($_SESSION['username'])){
                         echo $_SESSION['username'];
@@ -60,7 +62,7 @@
                         }
                         ?>
                </button>
-              
+
 
                <?php
                if(isset($_SESSION['username'])){
@@ -83,11 +85,11 @@
                      echo "";
                   }
                }
-               
+
                ?>
-              
+
             </div>
-            
+
          </div>
       </nav>
 
@@ -146,137 +148,53 @@
 
          </div>
 
-<!-- 
+<!--
    php code begins
 -->
+
+
+
 
 <?php
 require_once "../backend/dblogin.php";
 $connect=createConn();
+$query="SELECT * from inventory where 1; ";
+$result1=$connect->query($query);
 
 
-
-$query="SELECT * FROM inventory where productType='book';";
-$result=$connect->query($query);
-while($row=$result->fetch_assoc()){
-   
-
-
+//Columns must be a factor of 12 (1,2,3,4,6,12)
+$numOfCols = 4;
+$rowCount = 0;
+$bootstrapColWidth = 12 / $numOfCols;
 ?>
-
-         <div >
-            <div class="card-deck container-fluid text-dark pt-3">
-               <div class="card">
-               <h5 class="card-title"><?php echo $row['productName'];?></h5>
-                  
-                  <div class="card-body">
-                  <img style="height:50px; " src="<?php echo $row['picture'];?>" class="card-img d-flex align-self-center" alt="...">
-            </div>
-                  <div class="card-footer">
-                     <small class="text-muted"><button>Add to Cart<i class="fa fa-cart-plus"></i></button></small>
-                  </div>
-               </div>
-
-               <?php
-}
-?> 
-
-
+<div class="row" style="margin:5px; padding-top:10px;" >
 <?php
+while($row=$result1->fetch_assoc()){
 
-
-
-
-$query1="SELECT * FROM inventory where productType='apparel';";
-$result1=$connect->query($query1);
-while($row1=$result1->fetch_assoc()){
-   
 
 
 ?>
-         <div >
-            <div class="card-deck container-fluid text-dark pt-3">
-               <div class="card">
-               <h5 class="card-title"><?php echo $row1['productName'];?></h5>
-                  
-                  <div class="card-body">
-                  <img style="height:50px; " src="<?php echo $row1['picture'];?>" class="card-img d-flex align-self-center" alt="...">
+        <div style="padding-left:20px; padding-top:10px;" class="col-md-<?php echo $bootstrapColWidth; ?>">
+            <div class="thumbnail">
+                <img style="height:100px;" src="<?php echo $row['picture']; ?>">
+                <div ><p style="color:red;"><?php echo $row['productName']; ?></p></div>
+                <div  style="color:red;">
+                  <button><?php echo "$". $row['price'] ?></button>
                   </div>
-                  <div class="card-footer">
-                     <small class="text-muted"><button>Add to Cart<i class="fa fa-cart-plus"></i></button></small>
-                  </div>
-               </div>
-               <?php
+                <button>Add to cart </button>
+            </div>
+
+        </div>
+<?php
+    $rowCount++;
+    if($rowCount % $numOfCols == 0) echo '</div><div class="row"  style="margin:5px; padding-top:10px;">';
 }
 ?>
+</div>
 
 
 
 
-<!--
-               <div class="card">
-                  <img src="<?php echo $row['picture'];?>" class="card-img-top" alt="...">
-                  <div class="card-body">
-                     <h5 class="card-title">Product</h5>
-                  </div>
-                  <div class="card-footer">
-                     <small class="text-muted"><button>Add to Cart <i class="fa fa-cart-plus"></i></button></small>
-                  </div>
---> 
-               <!-- </div>
-               <div class="card">
-                  <img src="untitled.png" class="card-img-top" alt="...">
-                  <div class="card-body">
-                     <h5 class="card-title">Product</h5>
-                  </div>
-                  <div class="card-footer">
-                     <small class="text-muted"><button>Add to Cart <i class="fa fa-cart-plus"></i></button></small>
-                  </div>
-               </div>
-               <div class="card">
-                  <img src="untitled.png" class="card-img-top" alt="...">
-                  <div class="card-body">
-                     <h5 class="card-title">Product</h5>
-                  </div>
-                  <div class="card-footer">
-                     <small class="text-muted"><button>Add to Cart <i class="fa fa-cart-plus"></i></button></small>
-                  </div>
-               </div>
-               <div class="card">
-                  <img src="untitled.png" class="card-img-top" alt="...">
-                  <div class="card-body">
-                     <h5 class="card-title">Product</h5>
-                  </div>
-                  <div class="card-footer">
-                     <small class="text-muted"><button>Add to Cart <i class="fa fa-cart-plus"></i></button></small>
-                  </div>
-               </div> 
-                        <div class="carousel-item">
-                           <img class="d-block w-100" src="two.jpg" alt="Second slide">
-                           <div class="carousel-caption d-none d-md-block">
-                              <h5>M.E.T.H.O.D</h5>
-                           </div>
-                        </div>
-                        <div class="carousel-item">
-                           <img class="d-block w-100" src="three.jpg" alt="Third slide">
-                           <div class="carousel-caption d-none d-md-block">
-                              <h5>Tour BUS</h5>
-                           </div>
-                        </div>
-                     </div>
-                     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                     <span class="sr-only">Previous</span>
-                     </a>
-                     <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                     <span class="sr-only">Next</span>
-                     </a>
-                  </div>-->
-               </div>
-            </div>
-         </div>
-      </div>
       <div class="footer">
          <div id="button"></div>
          <div class="pt-1"></div>
@@ -284,7 +202,7 @@ while($row1=$result1->fetch_assoc()){
             <div class="container-fluid text-center text-md-left">
                <div class="row">
                   <div class="col-md-2 mt-md-0 mt-3">
-                     <h5 class="text-monospace text-warning"> 
+                     <h5 class="text-monospace text-warning">
                         <img src="nav3.png" width="60" height="60" alt=""> BaZaar
                      </h5>
                      <div class="footer-copyright py-0 te text-monospace">&copy; BaZaar 2019</div>
