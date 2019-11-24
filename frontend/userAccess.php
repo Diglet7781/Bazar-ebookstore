@@ -16,40 +16,40 @@
       </style>
    </head>
    <body>
-   
-      
+
+
       <div id="navBarPlaceholder"></div>
       <div class="container" id="container">
          <div class="form-container sign-up-container">
          <form method="post" action="../backend/signup.php">
-      
+
                <h1>Create Account</h1>
                 <div class="form-group">
-                
-    <label for="control1">Account Type</label> 
+
+    <label for="control1">Account Type</label>
     <select class="form-control text-warning" id="exampleFormControlSelect1" name="accountType">
       <option  value="Buyer">Buyer</option>
       <option  value="Seller">Seller</option>
-      
+
     </select>
-  </div> 
-           
+  </div>
+
                <input type="text" placeholder="First Name" name="fname" oninput="validatefirstname()">
                <input type="text" placeholder="Last Name" name="lname"oninput="validatelastname()">
                <input type="email" placeholder="Email" name="email">
 
-              
-               
+
+
 
                 <input type="text" placeholder="username" name="username">
                 <input type="password" placeholder="password" name="password" onKeyup="check();">
                 <input type="password" placeholder=" confirm password" name="confirm-password" onkeyup="check();">
 
-               
+
 
                <button name="submit" type="submit" value="Signup">Sign Up</button>
             </form>
-            <script type="text/javascript" src="../functions/registrationValidation.js"></script>
+            <script type="text/javascript" src="..backend/functions/registrationValidation.js"></script>
          </div>
          <div class="form-container sign-in-container">
             <form action="../backend/login.php" method="post">
@@ -59,7 +59,7 @@
                <input type="password" placeholder="Password" name="password">
                <span id="error"></span>
                <button type="submit" name="submitSignIn">Sign In</button>
-               
+
             </form>
          </div>
          <div class="overlay-container">
@@ -75,12 +75,11 @@
                </div>
             </div>
          </div>
-         
+
       </div>
       <div id="footerPlaceholder"></div>
       <script src="slidingOverlayJayEs.js"></script>
       <script src="loadNavAndFooter.js"></script>
-      
+
    </body>
 </html>
-

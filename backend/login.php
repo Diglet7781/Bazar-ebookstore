@@ -1,7 +1,7 @@
 
 <?php
    // session_start();
-  
+
     require_once "functions/validate.php";
     require_once "dblogin.php";
     if(isset($_POST['submitSignIn'])){
@@ -10,7 +10,7 @@
         if($username=="" || $password==""){
         header("Location: ../frontend/error.php");
         }else{
-        
+
         //creating conncetion to the db
         $connect= createConn();
         $query="SELECT * From user where username='$username';";
@@ -23,7 +23,7 @@
               $_SESSION['username']=$row['username'];
               $type= $_SESSION['type']=$row['accountType'];
               $_SESSION['userId']=$row['userId'];
-              
+
                     switch ($type)
                                     {
                                         case 'Seller':
@@ -37,13 +37,15 @@
                                     }
             }
             else{
-               echo "password did not match";
+              echo "Login Failed";
+          header("Location:../frontend/userAccess.php");
                 }
             }
             else{
-            echo "please enter the correct credentials or create a new account";
+              echo "Login Failed";
+          header("Location:../frontend/userAccess.php");
              }
          }
- 
+
         }
     ?>

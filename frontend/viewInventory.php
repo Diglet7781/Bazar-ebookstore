@@ -6,6 +6,11 @@
       <meta name="description" content="">
       <meta name="keywords" content="">
       <title> Bazaar - Shop healthy and smart </title>
+      <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+     <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
       <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -19,14 +24,14 @@
          img{
             height:50px;
          }
-     
+
          </style>
 </head>
    <body>
       <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light" >
          <div class="navbar-left">
             <a class="navbar-brand" href="homePage.php">
-            <img class="logo-dark" src="nav2.png" width="50" height="50" class="d-inline-block align-top" alt="" alt="logo"> 
+            <img class="logo-dark" src="nav2.png" width="50" height="50" class="d-inline-block align-top" alt="" alt="logo">
             </a>
             <div class="navbar-brand mb-1 h4 mr-lg-5">
                </span>
@@ -46,14 +51,14 @@
                </li>
                <li class="nav-item">
                   <a class="nav-link mr-lg-2" href="#" tabindex="-1" >Deals <span class="sr-only">(current)</span></a>
-            
+
             </ul>
             <form class="form-inline my-2 my-lg-0">
                <input class="form-control mr-sm-2" type="search" placeholder="Search1">
                <button class="btn btn-outline-success my-2 my-sm-0 mr-lg-5 mr-5" type="submit">Search</button>
             </form>
             <div class = "button">
-            <button type="button" class="btn btn-danger" id="anchor"><?php 
+            <button type="button" class="btn btn-danger" id="anchor"><?php
                session_start();
                     if(isset($_SESSION['username'])){
                         echo $_SESSION['username'];
@@ -63,7 +68,7 @@
                         }
                         ?>
                </button>
-              
+
 
                <?php
                if(isset($_SESSION['username'])){
@@ -85,15 +90,15 @@
                      echo "";
                   }
                }
-               
+
                ?>
-              
+
             </div>
-            
+
          </div>
       </nav>
 
-      
+
 
       <?php
 
@@ -113,12 +118,7 @@ $reasult = $connect->query($sqlBooks);
 <!DOCTYPE html>
 <html lang="en">
    <head>
- <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
 </head>
 <body>
@@ -132,11 +132,11 @@ $reasult = $connect->query($sqlBooks);
 							<th style="width:20%">Description</th>
 							<th style="width:10%">Product Id</th>
 							<th style="width:10%">Price</th>
-                            <th style="width:10%">Qunatity</th> 
-                            <th style="width:10%"></th>  
+                            <th style="width:10%">Qunatity</th>
+                            <th style="width:10%"></th>
 						</tr>
                     </thead>
-                    
+
             <?php
                 	while($row = $reasult->fetch_assoc()){
                         $productid=$row["productid"];
@@ -153,36 +153,37 @@ $reasult = $connect->query($sqlBooks);
 									<div class="col-sm-2 hidden-xs"><img src=<?php echo $picture ?> alt="..." class="img-responsive"/></div>
 									<div class="col-sm-10">
 										<h4 class="nomargin"><?php echo $productName ?></h4>
-										
+
                                     </div>
-                
+
 								</div>
-                                
+
                             </td>
                             <td datai-th="Description"><?php echo $productDescription ?></td>
                             <td datai-th="Product Id"><?php echo $productid ?></td>
-                            
-                            
+
+
 							<td data-th="Price"><?php echo $productPrice ?></td>
 							<td data-th="Quantity">
 								<?php echo $productQuantity?>
                             </td>
                             <td class="actions" data-th="">
-                            <a href='editInventory.php?id=<?php echo $productid?>' class="btn btn-info btn-sm"><i class="fa fa-refresh"></i>Update</a>
-                            <a href="deleteItem.php?id=<?php echo $productid?>" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></a>							
+                            <a href='../backend/editInventory.php?id=<?php echo $productid?>' class="btn btn-info btn-sm"><i class="fa fa-refresh"></i>Update</a>
+                            <a href="../backend/deleteItem.php?id=<?php echo $productid?>" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i>delete</a>
 							</td>
                         </tr>
-                        <?php 
+                        <?php
 						}
-					
+
                     ?>
-                <tr><a href="addInventory.php" class="class="btn btn-success"><i class="fa fa-file"></i>Add</a></tr>
-   
-                  
+
+
+
 					</tbody>
-                    
+
                     </tfoot>
                 </table>
+                <button>  <a href="addInventory.php" class="class="btn btn-success"><i class="fa fa-file"></i>Add</a></button>
                 <h3><font color="red">Apparels</font></h3>
                 <table id="viewInventory" class="table table-hover table-condensed">
     				<thead>
@@ -191,11 +192,11 @@ $reasult = $connect->query($sqlBooks);
 							<th style="width:20%">Description</th>
 							<th style="width:10%">Product Id</th>
 							<th style="width:10%">Price</th>
-                            <th style="width:10%">Qunatity</th> 
-                            <th style="width:10%"></th>  
+                            <th style="width:10%">Qunatity</th>
+                            <th style="width:10%"></th>
 						</tr>
                     </thead>
-                    
+
             <?php
                 	while($row1 = $reasult1->fetch_assoc()){
                         $productid=$row1["productid"];
@@ -212,39 +213,39 @@ $reasult = $connect->query($sqlBooks);
 									<div class="col-sm-2 hidden-xs"><img src=<?php echo $picture ?> alt="..." class="img-responsive"/></div>
 									<div class="col-sm-10">
 										<h4 class="nomargin"><?php echo $productName ?></h4>
-										
+
                                     </div>
-                
+
 								</div>
-                                
+
                             </td>
                             <td datai-th="Description"><?php echo $productDescription ?></td>
                             <td datai-th="Product Id"><?php echo $productid ?></td>
-                            
-                            
+
+
 							<td data-th="Price"><?php echo $productPrice ?></td>
 							<td data-th="Quantity">
 								<?php echo $productQuantity?>
                             </td>
                             <td class="actions" data-th="">
-                            <a href='editInventory.php?id=<?php echo $productid?>' class="btn btn-info btn-sm"><i class="fa fa-refresh"></i>Update</a>
-                            <a href="deleteItem.php?id=<?php echo $productid?>" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></a>             
+                              <a href='editInventory.php?id=<?php echo $productid?>' class="btn btn-info btn-sm"><i class="fa fa-refresh"></i>Update</a>
+                              <a href="../backend/deleteItem.php?id=<?php echo $productid?>" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i>delete</a>
               </td>
                         </tr>
-                        <?php 
+                        <?php
             }
-          
+
                     ?>
-                <tr><a href="addInventory.php" class="class="btn btn-success"><i class="fa fa-file"></i>Add</a></tr>
-   
-                  
+
+
+
           </tbody>
-                    
+
                     </tfoot>
                 </table>
+                  <button>  <a href="addInventory.php" class="class="btn btn-success"><i class="fa fa-file"></i>Add</a></button>
 
 
-    
       <div class="footer">
          <div id="button"></div>
          <div class="pt-1"></div>
@@ -252,7 +253,7 @@ $reasult = $connect->query($sqlBooks);
             <div class="container-fluid text-center text-md-left">
                <div class="row">
                   <div class="col-md-2 mt-md-0 mt-3">
-                     <h5 class="text-monospace text-warning"> 
+                     <h5 class="text-monospace text-warning">
                         <img src="nav3.png" width="60" height="60" alt=""> BaZaar
                      </h5>
                      <div class="footer-copyright py-0 te text-monospace">&copy; BaZaar 2019</div>
@@ -294,6 +295,3 @@ $reasult = $connect->query($sqlBooks);
       <script type="text/javascript" src="script.js"></script>
    </body>
 </html>
-
-
-

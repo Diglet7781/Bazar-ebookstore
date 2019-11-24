@@ -155,13 +155,14 @@ $picture=$row['picture'];
                         </p>
 
                            <!-- Default input -->
-                           <button class="btn btn-primary btn-md my-0 p"><a href="cart-view.php?id=<?php echo $productid; ?>">Add to cart</a>
-                           <i class="fas fa-shopping-cart ml-1"></i>
+                        
+                           <button class="btn btn-danger" type="button"><a href="../backend/addToCart.php?id=<?php echo $productid?>">addToCart</a></button>
+
+                 <i class="fas fa-shopping-cart ml-1"></i>
                            </button>
 
                      </div>
                      <!---add to cart functionality -->
-
 
                       <!-- end of add to cart-->
                    </div>

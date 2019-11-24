@@ -1,9 +1,9 @@
 
-  
+
 <?php
   session_start();
 include "User.php";
-require_once "dblogin.php";
+require_once "../backend/dblogin.php";
 class Seller extends User{
     //properties
     private $sellerId;
@@ -15,11 +15,11 @@ class Seller extends User{
     private $productQuantity;
     private $productDescription;
     private $productImage;
-    
+
     //methods
-  
+
     public function __construct($productName,$productType,$productDescription,$productQuantity,$productPrice,$productImage) {
-        
+
         $this->sellerId=$_SESSION['userId'];
         $this->productName = $productName;
         $this->productType=$productType;
@@ -27,7 +27,7 @@ class Seller extends User{
         $this->productQuantity = $productQuantity;
         $this->productPrice=$productPrice;
         $this->productImage = $productImage;
-        
+
       }
 
       //get seller ID
@@ -35,7 +35,7 @@ class Seller extends User{
       public function getsellerId(){
           return $this->sellerId;
       }
-   
+
 
     //get product name
     public function getproductName(){
@@ -61,7 +61,7 @@ class Seller extends User{
     public function getproductImage(){
         return $this->productImage;
     }
-   
+
     //get accountBalance
     public function getaccountBalance(){
         return $this->accountBalance;
@@ -80,10 +80,10 @@ class Seller extends User{
         $productPrice=$this->getproductPrice();
         $productImage=$this->getproductImage();
         //productid	productType	productName	productDescription	quantity	price	picture	sellerid
-        $query="INSERT INTO inventory(productType,productname, productdescription,quantity,price,picture,sellerid) 
+        $query="INSERT INTO inventory(productType,productname, productdescription,quantity,price,picture,sellerid)
         VALUES ('$productType','$productName','$productDescription','$productQuantity','$productPrice','$productImage','$sellerId')";
         return $query;
     }
-    
+
 }
 ?>

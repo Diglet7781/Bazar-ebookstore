@@ -1,13 +1,13 @@
 
 <?php
-  
+
     require_once "../backend/dblogin.php";
     require_once "../backend/class/Seller.php";
     require_once "../backend/functions/validate.php";
    // $username=$_SESSION['username'];
    // $type= $_SESSION['type'];
    session_start();
-   
+
     $sellerId=$_SESSION["userId"];
    echo  $_SESSION["userId"];
    // session_start();
@@ -15,7 +15,7 @@
    // {
       //  if($_SESSION['accountType']=='seller')
        // {
-    
+
     if (isset($_POST["add"])){
         $productName= test_input($_POST["itemName"]);
         $productType=test_input($_POST["productType"]);
@@ -36,12 +36,12 @@
 
         $image_base64 = base64_encode(file_get_contents($_FILES['picture']['tmp_name']) );
         $productImage = 'data:image/'.$imageFileType.';base64,'.$image_base64;
-        
+
           //validate input fields and verify
-        //itemValidate($productName,$productType,$productDescription,$productQuantity,$productPrice,$productImage); 
+        //itemValidate($productName,$productType,$productDescription,$productQuantity,$productPrice,$productImage);
         $products= new Seller($productName,$productType,$productDescription, $productQuantity, $productPrice, $productImage);
         $connect = createConn();
-        $result=$connect->query($products->addItems()); 
+        $result=$connect->query($products->addItems());
 
         //Upload File
         move_uploaded_file($_FILES['picture']['tmp_name'],$target_dir.$name);
@@ -51,7 +51,7 @@
         else{
             echo "item added sucessfully";
             header('Location:../frontend/viewInventory.php?addInventory=success');
-            
+
         }
     }
 ?>

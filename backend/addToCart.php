@@ -9,9 +9,9 @@ $sql="INSERT INTO cart(productid,userid,quantity)VALUES('$id','$userId','1')";
 // console.log("hello");
  if($connect->query($sql) === TRUE){
      echo"item added sucessfully";
-     header('Location:homePage.php');
+     header('Location:../frontend/homePage.php');
  }else{
      echo"Errorr updating record: ". $connect->error;
  }
- 
+
 ?>

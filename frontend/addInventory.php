@@ -16,14 +16,14 @@
             color: #FFFFFF;
     text-decoration: none;
          }
-     
+
          </style>
 </head>
    <body>
       <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light" >
          <div class="navbar-left">
             <a class="navbar-brand" href="homePage.php">
-            <img class="logo-dark" src="nav2.png" width="50" height="50" class="d-inline-block align-top" alt="" alt="logo"> 
+            <img class="logo-dark" src="nav2.png" width="50" height="50" class="d-inline-block align-top" alt="" alt="logo">
             </a>
             <div class="navbar-brand mb-1 h4 mr-lg-5">
                </span>
@@ -43,14 +43,14 @@
                </li>
                <li class="nav-item">
                   <a class="nav-link mr-lg-2" href="#" tabindex="-1" >Deals <span class="sr-only">(current)</span></a>
-            
+
             </ul>
             <form class="form-inline my-2 my-lg-0">
                <input class="form-control mr-sm-2" type="search" placeholder="Search1">
                <button class="btn btn-outline-success my-2 my-sm-0 mr-lg-5 mr-5" type="submit">Search</button>
             </form>
             <div class = "button">
-            <button type="button" class="btn btn-danger" id="anchor"><?php 
+            <button type="button" class="btn btn-danger" id="anchor"><?php
                session_start();
                     if(isset($_SESSION['username'])){
                         echo $_SESSION['username'];
@@ -60,7 +60,7 @@
                         }
                         ?>
                </button>
-              
+
 
                <?php
                if(isset($_SESSION['username'])){
@@ -68,7 +68,7 @@
                      echo '<button  class="btn btn-danger"><a href="profilePage.php">View Profile</a></button>';
                      echo "   ";
                      echo '<button  class="btn btn-danger"><a href="viewInventory.php">View Inventory</a></button>';
-                     
+
                      echo "   ";
                      echo '<button  class="btn btn-danger"><a href="../backend/logout.php">Logout</a></button>';
                   }else if($_SESSION['type']="Buyer"){
@@ -81,15 +81,15 @@
                      echo "";
                   }
                }
-               
+
                ?>
-              
+
             </div>
-            
+
          </div>
       </nav>
       <div id="addInventory" style="color:black;">
-      <form id="inventoryForm"action="../backend/addinventory.php" method="post" enctype="multipart/form-data">
+      <form id="inventoryForm"action="../backend/addInventory.php" method="post" enctype="multipart/form-data">
             Product Name:<input type="text"name="itemName" placeholder="Product Name">
             <br>
             ProductType:
@@ -107,21 +107,21 @@
             <br>
             pictures:<input type="file"name="picture">
             <br><br>
-            <input type="submit"name="add"value="AddToInventory">
+            <input type="submit"name="add" value="AddToInventory">
             <br>
-        
+
         </form>
-        <?php 
-          
+        <?php
+
           if(isset($_GET['addInventory'])){
             $addInventory=$_GET['addInventory'];
              echo "The item has been added sucessfully";
           }
         ?>
-    
+
     </div>
     <br>
-    
+
 
                </div>
             </div>
@@ -134,7 +134,7 @@
             <div class="container-fluid text-center text-md-left">
                <div class="row">
                   <div class="col-md-2 mt-md-0 mt-3">
-                     <h5 class="text-monospace text-warning"> 
+                     <h5 class="text-monospace text-warning">
                         <img src="nav3.png" width="60" height="60" alt=""> BaZaar
                      </h5>
                      <div class="footer-copyright py-0 te text-monospace">&copy; BaZaar 2019</div>
@@ -176,12 +176,3 @@
       <script type="text/javascript" src="script.js"></script>
    </body>
 </html>
-
-
-
-
-
-
-
-
-
