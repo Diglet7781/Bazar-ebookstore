@@ -1,3 +1,28 @@
+<?php
+
+require_once "../backend/dblogin.php";
+$connect=createConn();
+if(isset($_GET['id'])){
+$productid=$_GET['id'];
+$userId=$_SESSION['userId'];
+$sql="INSERT INTO cart(productid,userid,quantity)VALUES('$productid','$userId','1')";
+// console.log("hello");
+ if($connect->query($sql) === TRUE){
+     echo"item added sucessfully";
+
+ }else{
+     echo"Errorr updating record: ". $connect->error;
+ }
+
+}else{
+  echo "";
+}
+
+
+
+ ?>
+
+
 <!DOCTYPE html>
 <html lang = "en">
    <head>
@@ -19,14 +44,14 @@
          img{
             height:50px;
          }
-     
+
          </style>
 </head>
    <body>
       <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light" >
          <div class="navbar-left">
             <a class="navbar-brand" href="homePage.php">
-            <img class="logo-dark" src="nav2.png" width="50" height="50" class="d-inline-block align-top" alt="" alt="logo"> 
+            <img class="logo-dark" src="nav2.png" width="50" height="50" class="d-inline-block align-top" alt="" alt="logo">
             </a>
             <div class="navbar-brand mb-1 h4 mr-lg-5">
                </span>
@@ -46,14 +71,14 @@
                </li>
                <li class="nav-item">
                   <a class="nav-link mr-lg-2" href="#" tabindex="-1" >Deals <span class="sr-only">(current)</span></a>
-            
+
             </ul>
             <form class="form-inline my-2 my-lg-0">
                <input class="form-control mr-sm-2" type="search" placeholder="Search1">
                <button class="btn btn-outline-success my-2 my-sm-0 mr-lg-5 mr-5" type="submit">Search</button>
             </form>
             <div class = "button">
-            <button type="button" class="btn btn-danger" id="anchor"><?php 
+            <button type="button" class="btn btn-danger" id="anchor"><?php
                session_start();
                     if(isset($_SESSION['username'])){
                         echo $_SESSION['username'];
@@ -63,7 +88,7 @@
                         }
                         ?>
                </button>
-              
+
 
                <?php
                if(isset($_SESSION['username'])){
@@ -85,11 +110,11 @@
                      echo "";
                   }
                }
-               
+
                ?>
-              
+
             </div>
-            
+
          </div>
       </nav>
 
@@ -106,11 +131,11 @@
 						</tr>
 					</thead>
 
-               <?php 
+               <?php
                require_once "../backend/dblogin.php";
                $connect=createConn();
                $userId=$_SESSION['userId'];
-              
+
 
                $query="SELECT * from cart where userid='$userId';";
                $result=$connect->query($query);
@@ -126,12 +151,12 @@
 							$productName=$newRow['productName'];
 							$price=$newRow['price'];
 							$picture=$newRow['picture'];
-						?>	
-<!-- 
+						?>
+<!--
 						}
 					}
 				-->
-				
+
 					<tbody>
 						<tr>
 							<td data-th="Product">
@@ -139,48 +164,48 @@
 									<div class="col-sm-2 hidden-xs"><img src=<?php echo $picture ?> alt="..." class="img-responsive"/></div>
 									<div class="col-sm-10">
 										<h4 class="nomargin"><?php echo $productName ?></h4>
-										
+
 									</div>
 								</div>
-                                
+
 							</td>
-                            
+
 							<td data-th="Price"><?php echo $price ?></td>
 							<td data-th="Quantity">
                      <form method="post">
 								<input type="number" class="form-control text-center" value="1" min="1" max="100" name="quantity" type="submit">
                         </form>
 							</td>
-					
-							
+
+
 							<td class="actions" data-th="">
 								<button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
-								<button class="btn btn-danger btn-sm" name="delete" type="submit"><i class="fa fa-trash-o"></i></button>							
+								<button class="btn btn-danger btn-sm" name="delete" type="submit"><i class="fa fa-trash-o"></i></button>
 							</td>
 						</tr>
-                  <?php 
+                  <?php
                   }
                }
                ?>
 					</tbody>
-					
-                    
+
+
                      <tbody>
-						
+
 						<tr>
 							<td><a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
 							<td colspan="2" class="hidden-xs"></td>
 							<td class="hidden-xs text-center"><strong>
-                     <?php 
+                     <?php
                       $subtotal=0;
                      if(isset($_POST['quantity'])){
-                       
+
                         $quantity=$_POST['quantity'];
                         $subtotal=$price*$quantity;
                         echo "$".$subtotal;
-                        
+
                      }else{
-                     $subtotal=$price;
+                     $subtotal+=$price;
                      echo "$".$subtotal;
                      }
                      ?>
@@ -189,10 +214,10 @@
 						</tr>
 					</tfoot>
 				</table>
-            
+
 </div>
 </main>
-    
+
       <div class="footer">
          <div id="button"></div>
          <div class="pt-1"></div>
@@ -200,7 +225,7 @@
             <div class="container-fluid text-center text-md-left">
                <div class="row">
                   <div class="col-md-2 mt-md-0 mt-3">
-                     <h5 class="text-monospace text-warning"> 
+                     <h5 class="text-monospace text-warning">
                         <img src="nav3.png" width="60" height="60" alt=""> BaZaar
                      </h5>
                      <div class="footer-copyright py-0 te text-monospace">&copy; BaZaar 2019</div>
@@ -242,6 +267,3 @@
       <script type="text/javascript" src="script.js"></script>
    </body>
 </html>
-
-
-

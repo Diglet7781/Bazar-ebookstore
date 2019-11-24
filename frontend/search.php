@@ -123,7 +123,11 @@ if(isset($_POST['searchbtn'])){
                    <div  style="color:red;">
                      <button><?php echo "$". $row['price'] ?></button>
                      </div>
-                   <button>Add to cart </button>
+                     <form method="get">
+                     <button  name="addToCart" type="submit">
+                       <a href="search.php?id=<?php echo $row['productid'];?>">Add to cart</a> </button>
+
+     </form>
                </div>
 
            </div>
@@ -136,6 +140,30 @@ if(isset($_POST['searchbtn'])){
    <?php
 }
     ?>
+
+
+    <!---add to cart functionality -->
+    <?php
+  if(isset($_GET['id'])){
+    $productid=$_GET['id'];
+    $userId=$_SESSION['userId'];
+    $sql="INSERT INTO cart(productid,userid,quantity)VALUES('$productid','$userId','1')";
+    // console.log("hello");
+     if($connect->query($sql) === TRUE){
+         echo"item added sucessfully";
+         header("Location:cart-view.php");
+
+     }else{
+         echo"Errorr updating record: ". $connect->error;
+     }
+
+    }
+
+
+
+     ?>
+
+     <!-- end of add to cart-->
 
 
 

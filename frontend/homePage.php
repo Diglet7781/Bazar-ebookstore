@@ -102,7 +102,7 @@
             </ol>
             <div class="carousel-inner">
                <div class="carousel-item active">
-                  <img class="d-block w-100" src="img/carousel1.jpg" alt="First slide">
+                  <img class="d-block w-100" src="img/carousel11.jpg" alt="First slide" style="height:300px;">
                   <div class="carousel-caption d-none d-md-block">
                      <div class="container-fluid">
                         <div class="row">
@@ -116,14 +116,14 @@
                   </div>
                </div>
                <div class="carousel-item">
-                  <img class="d-block w-100" src="img/carousel2.jpg" alt="Second slide">
+                  <img class="d-block w-100" src="img/carousel22.jpg" alt="Second slide" style="height:300px;">
                   <div class="carousel-caption d-none d-md-block">
                      <h5>Second Slide</h5>
                      <p>Second Slide description</p>
                   </div>
                </div>
                <div class="carousel-item">
-                  <img class="d-block w-100" src="img/carousel3.jpg" alt="Third slide">
+                  <img class="d-block w-100" src="img/carousel33.jpg" alt="Third slide" style="height:300px;">
                   <div class="carousel-caption d-none d-md-block">
                      <h5>Third Slide </h5>
                      <p>Third slide description</p>
@@ -140,7 +140,7 @@
             </a>
          </div>
 
-         <!--From here Card begins -->
+         <!--From here  Display Card begins -->
 
          <div class = "label-heading">
 
@@ -176,12 +176,38 @@ while($row=$result1->fetch_assoc()){
 ?>
         <div style="padding-left:20px; padding-top:10px;" class="col-md-<?php echo $bootstrapColWidth; ?>">
             <div class="thumbnail">
-                <img style="height:100px;" src="<?php echo $row['picture']; ?>">
+                <a href="productPage.php?id=<?php echo $row['productid']; ?>"><img style="height:100px;" src="<?php echo $row['picture']; ?>"></a>
                 <div ><p style="color:red;"><?php echo $row['productName']; ?></p></div>
                 <div  style="color:red;">
                   <button><?php echo "$". $row['price'] ?></button>
                   </div>
-                <button>Add to cart </button>
+
+                <form method="get">
+                <button  name="addToCart" type="submit">
+                  <a href="homePage.php?id=<?php echo $row['productid'];?>">Add to cart</a> </button>
+
+</form>
+              <!---add to cart functionality -->
+              <?php
+            if(isset($_GET['id'])){
+              $productid=$_GET['id'];
+              $userId=$_SESSION['userId'];
+              $sql="INSERT INTO cart(productid,userid,quantity)VALUES('$productid','$userId','1')";
+              // console.log("hello");
+               if($connect->query($sql) === TRUE){
+                   echo"item added sucessfully";
+
+               }else{
+                   echo"Errorr updating record: ". $connect->error;
+               }
+
+              }
+
+
+
+               ?>
+
+               <!-- end of add to cart-->
             </div>
 
         </div>
