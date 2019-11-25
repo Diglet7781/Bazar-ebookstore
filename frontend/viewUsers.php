@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once "../backend/dblogin.php";
 
 $connect=createConn();
@@ -22,7 +23,10 @@ $result=$connect->query($sql);
        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
        <link rel="stylesheet" type="text/css" href="testFile.css">
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/esm/popper.min.js">
        <link rel = "stylesheet" href ="navBarAndFooterStyles.css" rel="stylesheet"/>
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
        <style>
           #anchor{
              color: #FFFFFF;
@@ -30,7 +34,7 @@ $result=$connect->query($sql);
           }
       </style>
  </head>
-    <body>
+ <body>
        <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light" >
           <div class="navbar-left">
              <a class="navbar-brand" href="homePage.php">
@@ -63,30 +67,45 @@ $result=$connect->query($sql);
                 <button class="btn btn-outline-success my-2 my-sm-0 mr-lg-5 mr-5" type="submit" name="searchbtn">Search</button>
              </form>
              <!--end of search functionality code -->
-             <div class = "button">
-             <button type="button" class="btn btn-danger" id="anchor"><?php
-                session_start();
-                     if(isset($_SESSION['username'])){
-                         echo $_SESSION['username'];
-                         }
-                     else{
-                         echo '<a href="userAccess.php">GetStarted</a>';
-                         }
-                         ?>
-                </button>
 
+ <!---dropdwon menus
+ <div class="dropdown">
+   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+     Dropdown button
+   </button>
+   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+     <a class="dropdown-item" href="#">Action</a>
+     <a class="dropdown-item" href="#">Another action</a>
+     <a class="dropdown-item" href="#">Something else here</a>
+   </div>
+ </div>
+
+ -->
 
                 <?php
                 if(isset($_SESSION['username'])){
                    if($_SESSION['type']== "Seller"){
-                      echo '<button  class="btn btn-danger"><a href="profilePage.php">View Profile</a></button>';
+                     echo'<div class="dropdown">';
+                     echo'<button class="btn btn-danger" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       menu
+                     </button>';
+                     echo'<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">';
+                      echo '<a class="dropdown-item" href="profilePage.php">View Profile</a>';
                       echo "   ";
-                      echo '<button  class="btn btn-danger"><a href="viewInventory.php">View Inventory</a></button>';
+                      echo '<a class="dropdown-item" href="viewInventory.php">View Inventory</a>';
                       echo "   ";
-                      echo '<button class="btn btn-danger"><a href="addInventory.php">Add Inventory</a></button>';
+                      echo '<a class="dropdown-item" href="addInventory.php">Add Inventory</a>';
                       echo "   ";
-                      echo '<button  class="btn btn-danger"><a href="cart-view.php">View Cart</a></button>';
-                      echo '<button  class="btn btn-danger"><a href="../backend/logout.php">Logout</a></button>';
+                      echo '<a class="dropdown-item" href="cart-view.php">View Cart</a>';
+
+                      if(isset($_SESSION['username'])){
+                        if($_SESSION['username']==="admin"){
+                          echo '<a class="dropdown-item" href="viewUsers.php">viewUsers</a>';
+                        }
+                      }
+                      echo '<a class="dropdown-item" href="../backend/logout.php">Logout</a>';
+                      echo '</div>';
+                      echo '</div>';
                    }else if($_SESSION['type']="Buyer"){
                       echo '<button  class="btn btn-danger"><a href="profilePage.php">View Profile</a></button>';
                       echo "   ";
@@ -99,13 +118,23 @@ $result=$connect->query($sql);
                         echo "";
                      }
                 }
+
+
                 ?>
+                <div class = "button">
+                <button type="button" class="btn btn-danger" id="anchor"><?php
 
-             </div>
+                        if(isset($_SESSION['username'])){
+                            echo $_SESSION['username'];
+                            }
+                        else{
+                            echo '<a href="userAccess.php">GetStarted</a>';
+                            }
+                            ?>
+                   </button>
+                 </div>
 
-          </div>
        </nav>
-
 
 
  <table id="viewInventory" class="table table-hover table-condensed">

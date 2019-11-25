@@ -1,3 +1,6 @@
+<?php
+ session_start();
+ ?>
 <!DOCTYPE html>
 <html lang = "en">
    <head>
@@ -6,28 +9,25 @@
       <meta name="description" content="">
       <meta name="keywords" content="">
       <title> Bazaar - Shop healthy and smart </title>
-      <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-     <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
-     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
       <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <link rel="stylesheet" type="text/css" href="testFile.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/esm/popper.min.js">
       <link rel = "stylesheet" href ="navBarAndFooterStyles.css" rel="stylesheet"/>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
       <style>
          #anchor{
             color: #FFFFFF;
     text-decoration: none;
          }
          img{
-            height:50px;
+           height:50px;
          }
-
-         </style>
+     </style>
 </head>
-   <body>
+<body>
       <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light" >
          <div class="navbar-left">
             <a class="navbar-brand" href="homePage.php">
@@ -53,51 +53,81 @@
                   <a class="nav-link mr-lg-2" href="#" tabindex="-1" >Deals <span class="sr-only">(current)</span></a>
 
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-               <input class="form-control mr-sm-2" type="search" placeholder="Search1">
-               <button class="btn btn-outline-success my-2 my-sm-0 mr-lg-5 mr-5" type="submit">Search</button>
-            </form>
-            <div class = "button">
-            <button type="button" class="btn btn-danger" id="anchor"><?php
-               session_start();
-                    if(isset($_SESSION['username'])){
-                        echo $_SESSION['username'];
-                        }
-                    else{
-                        echo '<a href="userAccess.php">GetStarted</a>';
-                        }
-                        ?>
-               </button>
 
+            <!--here goes the code for search functionality -->
+            <form class="form-inline my-2 my-lg-0" action="search.php" method="post">
+               <input class="form-control mr-sm-2" type="search" placeholder="Search" name="search">
+               <button class="btn btn-outline-success my-2 my-sm-0 mr-lg-5 mr-5" type="submit" name="searchbtn">Search</button>
+            </form>
+            <!--end of search functionality code -->
+
+<!---dropdwon menus
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Dropdown button
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+  </div>
+</div>
+
+-->
 
                <?php
                if(isset($_SESSION['username'])){
                   if($_SESSION['type']== "Seller"){
-                     echo '<button  class="btn btn-danger"><a href="profilePage.php">View Profile</a></button>';
+                    echo'<div class="dropdown">';
+                    echo'<button class="btn btn-danger" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      menu
+                    </button>';
+                    echo'<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">';
+                     echo '<a class="dropdown-item" href="profilePage.php">View Profile</a>';
                      echo "   ";
-                     echo '<button  class="btn btn-danger"><a href="viewInventory.php">View Inventory</a></button>';
+                     echo '<a class="dropdown-item" href="viewInventory.php">View Inventory</a>';
                      echo "   ";
-                     echo '<button class="btn btn-danger"><a href="addInventory.php">Add Inventory</a></button>';
+                     echo '<a class="dropdown-item" href="addInventory.php">Add Inventory</a>';
                      echo "   ";
-                     echo '<button  class="btn btn-danger"><a href="../backend/logout.php">Logout</a></button>';
+                     echo '<a class="dropdown-item" href="cart-view.php">View Cart</a>';
+
+                     if(isset($_SESSION['username'])){
+                       if($_SESSION['username']==="admin"){
+                         echo '<a class="dropdown-item" href="viewUsers.php">viewUsers</a>';
+                       }
+                     }
+                     echo '<a class="dropdown-item" href="../backend/logout.php">Logout</a>';
+                     echo '</div>';
+                     echo '</div>';
                   }else if($_SESSION['type']="Buyer"){
                      echo '<button  class="btn btn-danger"><a href="profilePage.php">View Profile</a></button>';
                      echo "   ";
                      echo '<button  class="btn btn-danger"><a href="cart-view.php">View Cart</a></button>';
                      echo "  ";
                      echo '<button  class="btn btn-danger"><a href="../backend/logout.php">Logout</a></button>';
-                  }else{
-                     echo "";
                   }
+                    else {
+                      // code...
+                       echo "";
+                    }
                }
 
+
                ?>
+               <div class = "button">
+               <button type="button" class="btn btn-danger" id="anchor"><?php
 
-            </div>
+                       if(isset($_SESSION['username'])){
+                           echo $_SESSION['username'];
+                           }
+                       else{
+                           echo '<a href="userAccess.php">GetStarted</a>';
+                           }
+                           ?>
+                  </button>
+                </div>
 
-         </div>
       </nav>
-
 
 
       <?php
@@ -129,7 +159,7 @@ $reasult = $connect->query($sqlBooks);
     				<thead>
 						<tr>
 							<th style="width:50%">Product Name</th>
-							<th style="width:20%">Description</th>
+
 							<th style="width:10%">Product Id</th>
 							<th style="width:10%">Price</th>
                             <th style="width:10%">Qunatity</th>
@@ -159,7 +189,7 @@ $reasult = $connect->query($sqlBooks);
 								</div>
 
                             </td>
-                            <td datai-th="Description"><?php echo $productDescription ?></td>
+
                             <td datai-th="Product Id"><?php echo $productid ?></td>
 
 
@@ -189,7 +219,7 @@ $reasult = $connect->query($sqlBooks);
     				<thead>
 						<tr>
 							<th style="width:50%">Product Name</th>
-							<th style="width:20%">Description</th>
+
 							<th style="width:10%">Product Id</th>
 							<th style="width:10%">Price</th>
                             <th style="width:10%">Qunatity</th>
@@ -219,7 +249,7 @@ $reasult = $connect->query($sqlBooks);
 								</div>
 
                             </td>
-                            <td datai-th="Description"><?php echo $productDescription ?></td>
+                          
                             <td datai-th="Product Id"><?php echo $productid ?></td>
 
 

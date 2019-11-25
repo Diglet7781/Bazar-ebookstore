@@ -11,94 +11,140 @@ $row=$result->fetch_assoc();
 $firstName=$row['firstName'];
 $lastName=$row['lastName'];
 $email=$row['email'];
-echo $email;
+
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang = "en">
    <head>
       <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <meta name="description" content="">
-      <meta name="author" content="">
+      <meta name="keywords" content="">
+      <title> Bazaar - Shop healthy and smart </title>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
       <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" type="text/css" href="testFile.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/esm/popper.min.js">
       <link rel = "stylesheet" href ="navBarAndFooterStyles.css" rel="stylesheet"/>
-      <title>User profile form requirement</title>
-   </head>
-   <body class="pb-5" >
-         <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light" >
-               <div class="navbar-left">
-                  <a class="navbar-brand" href="homePage.php">
-                  <img class="logo-dark" src="nav2.png" width="50" height="50" class="d-inline-block align-top" alt="" alt="logo">
-                  </a>
-                  <div class="navbar-brand mb-1 h4 mr-lg-5">
-                     </span>
-                     <h2><a href="homePage.php"> BaaZaar </a></h2>
-                  </div>
-               </div>
-               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-               <span class="navbar-toggler-icon"></span>
-               </button>
-               <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                  <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                     <li class="nav-item">
-                        <a class="nav-link mr-lg-2" href="#">Products <span class="sr-only ">(current)</span></a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link mr-lg-2" href="#">Brands <span class="sr-only">(current)</span></a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link mr-lg-2" href="#" tabindex="-1" >Deals <span class="sr-only">(current)</span></a>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+      <style>
+         #anchor{
+            color: #FFFFFF;
+    text-decoration: none;
+         }
+     </style>
+</head>
+<body>
+      <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light" >
+         <div class="navbar-left">
+            <a class="navbar-brand" href="homePage.php">
+            <img class="logo-dark" src="nav2.png" width="50" height="50" class="d-inline-block align-top" alt="" alt="logo">
+            </a>
+            <div class="navbar-brand mb-1 h4 mr-lg-5">
+               </span>
+               <h2><a href="homePage.php"> BaaZaar </a></h2>
+            </div>
+         </div>
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+               <li class="nav-item">
+                  <a class="nav-link mr-lg-2" href="#">Products <span class="sr-only ">(current)</span></a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link mr-lg-2" href="#">Brands <span class="sr-only">(current)</span></a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link mr-lg-2" href="#" tabindex="-1" >Deals <span class="sr-only">(current)</span></a>
 
-                  </ul>
-                  <!--here goes the code for search functionality -->
-                  <form class="form-inline my-2 my-lg-0" action="search.php" method="post">
-                     <input class="form-control mr-sm-2" type="search" placeholder="Search" name="search">
-                     <button class="btn btn-outline-success my-2 my-sm-0 mr-lg-5 mr-5" type="submit" name="searchbtn">Search</button>
-                  </form>
-                  <!--end of search functionality code -->
-                  <div class = "button">
-                  <button type="button" class="btn btn-danger" id="anchor"><?php
+            </ul>
 
-                          if(isset($_SESSION['username'])){
-                              echo $_SESSION['username'];
-                              }
-                          else{
-                              echo '<a href="userAccess.php">GetStarted</a>';
-                              }
-                              ?>
-                     </button>
+            <!--here goes the code for search functionality -->
+            <form class="form-inline my-2 my-lg-0" action="search.php" method="post">
+               <input class="form-control mr-sm-2" type="search" placeholder="Search" name="search">
+               <button class="btn btn-outline-success my-2 my-sm-0 mr-lg-5 mr-5" type="submit" name="searchbtn">Search</button>
+            </form>
+            <!--end of search functionality code -->
 
+<!---dropdwon menus
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Dropdown button
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+  </div>
+</div>
 
-                     <?php
+-->
+
+               <?php
+               if(isset($_SESSION['username'])){
+                  if($_SESSION['type']== "Seller"){
+                    echo'<div class="dropdown">';
+                    echo'<button class="btn btn-danger" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      menu
+                    </button>';
+                    echo'<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">';
+                     echo '<a class="dropdown-item" href="profilePage.php">View Profile</a>';
+                     echo "   ";
+                     echo '<a class="dropdown-item" href="viewInventory.php">View Inventory</a>';
+                     echo "   ";
+                     echo '<a class="dropdown-item" href="addInventory.php">Add Inventory</a>';
+                     echo "   ";
+                     echo '<a class="dropdown-item" href="cart-view.php">View Cart</a>';
+
                      if(isset($_SESSION['username'])){
-                        if($_SESSION['type']== "Seller"){
-                           echo '<button  class="btn btn-danger"><a href="profilePage.php">View Profile</a></button>';
-                           echo "   ";
-                           echo '<button  class="btn btn-danger"><a href="viewInventory.php">View Inventory</a></button>';
-                           echo "   ";
-                           echo '<button class="btn btn-danger"><a href="addInventory.php">Add Inventory</a></button>';
-                           echo "   ";
-                           echo '<button  class="btn btn-danger"><a href="../backend/logout.php">Logout</a></button>';
-                        }else if($_SESSION['type']="Buyer"){
-                           echo '<button  class="btn btn-danger"><a href="profilePage.php">View Profile</a></button>';
-                           echo "   ";
-                           echo '<button  class="btn btn-danger"><a href="cart-view.php">View Cart</a></button>';
-                           echo "  ";
-                           echo '<button  class="btn btn-danger"><a href="../backend/logout.php">Logout</a></button>';
-                        }else{
-                           echo "";
-                        }
+                       if($_SESSION['username']==="admin"){
+                         echo '<a class="dropdown-item" href="viewUsers.php">viewUsers</a>';
+                       }
                      }
+                     echo '<a class="dropdown-item" href="../backend/logout.php">Logout</a>';
+                     echo '</div>';
+                     echo '</div>';
+                  }else if($_SESSION['type']="Buyer"){
+                    echo'<div class="dropdown">';
+                    echo'<button class="btn btn-danger" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      menu
+                    </button>';
+                    echo'<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">';
+                     echo '<a class="dropdown-item" href="profilePage.php">View Profile</a></button>';
+                     echo "   ";
+                     echo '<a class="dropdown-item" href="cart-view.php">View Cart</a></button>';
+                     echo "  ";
+                     echo '<a class="dropdown-item" href="../backend/logout.php">Logout</a></button>';
+                     echo '</div>';
+                     echo '</div>';
+                   }
+                    else {
+                      // code...
+                       echo "";
+                    }
+               }
 
-                     ?>
 
-                  </div>
+               ?>
+               <div class = "button">
+               <button type="button" class="btn btn-danger" id="anchor"><?php
 
-               </div>
-            </nav>
+                       if(isset($_SESSION['username'])){
+                           echo $_SESSION['username'];
+                           }
+                       else{
+                           echo '<a href="userAccess.php">GetStarted</a>';
+                           }
+                           ?>
+                  </button>
+                </div>
+
+      </nav>
 
 
 
