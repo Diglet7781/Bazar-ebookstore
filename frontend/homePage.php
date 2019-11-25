@@ -50,6 +50,7 @@
                <input class="form-control mr-sm-2" type="search" placeholder="Search" name="search">
                <button class="btn btn-outline-success my-2 my-sm-0 mr-lg-5 mr-5" type="submit" name="searchbtn">Search</button>
             </form>
+
             <!--end of search functionality code -->
             <div class = "button">
             <button type="button" class="btn btn-danger" id="anchor"><?php
@@ -81,11 +82,18 @@
                      echo '<button  class="btn btn-danger"><a href="cart-view.php">View Cart</a></button>';
                      echo "  ";
                      echo '<button  class="btn btn-danger"><a href="../backend/logout.php">Logout</a></button>';
-                  }else{
-                     echo "";
                   }
+                    else {
+                      // code...
+                       echo "";
+                    }
                }
 
+               if(isset($_SESSION['username'])){
+                 if($_SESSION['username']==="admin"){
+                   echo '<button  class="btn btn-danger"><a href="viewUsers.php">viewUser</a></button>';
+                 }
+               }
                ?>
 
             </div>

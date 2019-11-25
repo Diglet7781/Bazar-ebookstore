@@ -6,7 +6,7 @@
     require_once "functions/validate.php";
    // $username=$_SESSION['username'];
    // $type= $_SESSION['type'];
-   session_start();
+
 
     $sellerId=$_SESSION["userId"];
    echo  $_SESSION["userId"];

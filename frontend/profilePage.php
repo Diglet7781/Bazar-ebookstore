@@ -31,7 +31,7 @@ echo $email;
          <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light" >
                <div class="navbar-left">
                   <a class="navbar-brand" href="homePage.php">
-                  <img class="logo-dark" src="nav2.png" width="50" height="50" class="d-inline-block align-top" alt="" alt="logo"> 
+                  <img class="logo-dark" src="nav2.png" width="50" height="50" class="d-inline-block align-top" alt="" alt="logo">
                   </a>
                   <div class="navbar-brand mb-1 h4 mr-lg-5">
                      </span>
@@ -51,15 +51,17 @@ echo $email;
                      </li>
                      <li class="nav-item">
                         <a class="nav-link mr-lg-2" href="#" tabindex="-1" >Deals <span class="sr-only">(current)</span></a>
-                  
+
                   </ul>
-                  <form class="form-inline my-2 my-lg-0">
-                     <input class="form-control mr-sm-2" type="search" placeholder="Search1">
-                     <button class="btn btn-outline-success my-2 my-sm-0 mr-lg-5 mr-5" type="submit">Search</button>
+                  <!--here goes the code for search functionality -->
+                  <form class="form-inline my-2 my-lg-0" action="search.php" method="post">
+                     <input class="form-control mr-sm-2" type="search" placeholder="Search" name="search">
+                     <button class="btn btn-outline-success my-2 my-sm-0 mr-lg-5 mr-5" type="submit" name="searchbtn">Search</button>
                   </form>
+                  <!--end of search functionality code -->
                   <div class = "button">
-                  <button type="button" class="btn btn-danger" id="anchor"><?php 
-                   
+                  <button type="button" class="btn btn-danger" id="anchor"><?php
+
                           if(isset($_SESSION['username'])){
                               echo $_SESSION['username'];
                               }
@@ -68,8 +70,8 @@ echo $email;
                               }
                               ?>
                      </button>
-                    
-      
+
+
                      <?php
                      if(isset($_SESSION['username'])){
                         if($_SESSION['type']== "Seller"){
@@ -90,11 +92,11 @@ echo $email;
                            echo "";
                         }
                      }
-                     
+
                      ?>
-                    
+
                   </div>
-                  
+
                </div>
             </nav>
 
@@ -177,7 +179,7 @@ echo $email;
       </div>
 
 
-         
+
       <div class="footer" style="padding-top=30px;">
          <div id="button"></div>
          <div class="pt-1"></div>
@@ -185,7 +187,7 @@ echo $email;
             <div class="container-fluid text-center text-md-left">
                <div class="row">
                   <div class="col-md-2 mt-md-0 mt-3">
-                     <h5 class="text-monospace text-warning"> 
+                     <h5 class="text-monospace text-warning">
                         <img src="nav3.png" width="60" height="60" alt=""> BaZaar
                      </h5>
                      <div class="footer-copyright py-0 te text-monospace">&copy; BaZaar 2019</div>
@@ -229,17 +231,3 @@ echo $email;
       <script type="text/javascript" src="script.js"></script>
    </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-                          
-
-
