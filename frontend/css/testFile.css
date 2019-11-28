@@ -1,0 +1,180 @@
+.slideshow-container {
+
+    width: 100%;
+    padding-bottom: 500px;
+    object-fit: scale-down;
+    
+    
+    }
+    
+    
+    .card-container {
+    
+        width: 80%;
+    }
+    
+    
+    @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400);
+    body{
+      font-family: 'Source Sans Pro', sans-serif;
+      font-weight:300;
+      background-color:white;
+      color:#FFF;
+    }
+    section{
+      text-align:center;
+    }
+    .footer #button{
+        width:35px;
+        height:35px;
+        border: #ff0000 12px solid;
+        border-radius:35px;
+        margin:0 auto;
+        position:relative;
+        -webkit-transition: all 1s ease;
+        -moz-transition: all 1s ease;
+        -o-transition: all 1s ease;
+        -ms-transition: all 1s ease;
+        transition: all 1s ease;
+    }
+    .footer #button:hover{
+        width:35px;
+        height:35px;
+        border: #fff 12px solid;
+        -webkit-transition: all 1s ease;
+        -moz-transition: all 1s ease;
+        -o-transition: all 1s ease;
+        -ms-transition: all 1s ease;
+        transition: all 1s ease;
+        position:relative;
+    }
+    .footer {
+        bottom:0;
+        left:0;
+        position:fixed;
+        width: 100%;
+        height: 2em;
+        overflow:hidden;
+        margin:0 auto;
+        -webkit-transition: all 1s ease;
+        -moz-transition: all 1s ease;
+        -o-transition: all 1s ease;
+        -ms-transition: all 1s ease;
+        transition: all 1s ease;
+        z-index:999;
+    }
+    .footer:hover {
+        -webkit-transition: all 1s ease;
+        -moz-transition: all 1s ease;
+        -o-transition: all 1s ease;
+        -ms-transition: all 1s ease;
+        transition: all 1s ease;
+        height: 10em;
+    }
+    .footer #container{
+        margin-top:5px;
+        width:100%;
+    height:100%;
+      position:relative;
+      top:0;
+      left:0;
+        background:	#fff;
+    }
+    .footer #cont{
+      position:relative;
+      top:-45px;
+      right:190px;
+        width:150px;
+        height:auto;
+        margin:0 auto;
+    }
+    .footer_center{
+        width:500px;
+        float:left;
+      text-align:center;
+    }
+    .footer h3{
+        font-family: 'Helvetica';
+        font-size: 30px;
+        font-weight: 100;
+        margin-top:70px;
+        margin-left:40px;
+    }
+    
+    
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        max-width: 300px;
+        margin: auto;
+        text-align: center;
+        font-family: arial;
+      }
+      
+      .price {
+        color: grey;
+        font-size: 22px;
+      }
+      
+      .card button {
+        border: none;
+        outline: 0;
+        padding: 12px;
+        color: white;
+        background-color: #ff0000;
+        text-align: center;
+        cursor: pointer;
+        width: 100%;
+        font-size: 18px;
+      }
+      
+      .card button:hover {
+        opacity: 0.7;
+      }
+    
+      .card-container {
+    
+        padding-top: 20px;
+    
+    
+    
+    
+    
+      }
+    
+    
+      
+      
+      .flex-container {
+        display: flex;
+      }
+    
+      .navbar {
+    
+    
+        padding-bottom: -2px;
+      }
+      
+    .topnav {
+      background-color: #333;
+      overflow: hidden;
+    }
+    
+    /* Style the links inside the navigation bar */
+    .topnav a {
+      float: left;
+      display: block;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+      border-bottom: 3px solid transparent;
+    }
+    
+    .topnav a:hover {
+      border-bottom: 3px solid red;
+    }
+    
+    .topnav a.active {
+      border-bottom: 3px solid red;
+    }

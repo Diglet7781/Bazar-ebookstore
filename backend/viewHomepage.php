@@ -1,9 +1,6 @@
 <!DOCTYPE html>
-
-
 <html lang = "en">
 <head>
-
 	<title>inventory</title>
 	<style>
 		td{
@@ -18,7 +15,7 @@
 	<h1>Inventory</h1>
 <?php 
 	
-    require_once "dblogin.php";
+    require_once "setUps/dblogin.php";
     
 
     $connect = createConn();
@@ -55,7 +52,7 @@
         echo '<td><a href="addToCart.php?id='.$productid.'">Add To Cart</a></td>';
         echo "</tr>";
     }
-    echo'<td><a href="viewCart.php">view cart</a></td>';
+    echo'<td><a href="cartPHP/viewCart.php">view cart</a></td>';
     echo"</table";
 
     $connect->close();

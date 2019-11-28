@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+.navbar-nav>li>a,
+.navbar-brand {
+  padding-top: 5px !important;
+  padding-bottom: 0 !important;
+  height: 15px;
+}
+
+.navbar {
+  min-height: 30px !important;
+}
+
+.navbar-brand>img {
+  margin-top: -36px;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+  padding-bottom: 90px;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: -20px 0 50px;
+  margin-bottom: 60px;
+}
+
+p {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  margin: 20px 0 30px;
+}
+
+span {
+  font-size: 12px;
+  color: beige;
+}
+
+a {
+  color: #fff;
+  font-size: 14px;
+  text-decoration: none;
+  margin: 15px 0;
+}
+
+#footerReuse {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 16%;
+}
+
+

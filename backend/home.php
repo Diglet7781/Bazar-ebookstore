@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,11 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>home</title>
-    <link rel="stylesheet" href="homedisplay.css">
 </head>
 <body>
 <?php
-require_once "dblogin.php";
+require_once "setUps/dblogin.php";
 $connect=createConn();
 
 $query="SELECT * FROM  inventory";
@@ -34,7 +32,7 @@ echo "<div class ='display'>";
     echo '<a href="viewdetails.php?productId=' .$productID. '">details</a>';
     
 echo "</div>";
-header('Location:viewCart.php');
+header('Location:cartPHP/viewCart.php');
 }
 
 ?>
