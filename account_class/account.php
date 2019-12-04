@@ -1,24 +1,26 @@
 <?php
 	//$con=mysqli_connect("localhost","my_user","my_password","my_db");
-	$connection = mysqli_connect("localhost", "fjc56", "Labrador!123", "fjc56"); // Establishing Connection with Server
+	$connection = createConn(); // Establishing Connection with Server
 	if (mysqli_connect_errno())
 		echo "Failed to connect to MySQL: " . mysqli_connect_error();
 
 	// Fetching variables of the form which travels in URL
 	if( isset($_POST['submit']) ) 
-	{ 											//1
-		if (    !(isset($_POST['accountType'])) || !(isset($_POST['fname'])) || !(isset($_POST['lname'])) || !(isset($_POST['email'])) || !(isset($_POST['username'])) || !(isset($_POST['password'])) || !(isset($_POST['confirm-password']))|| ( $_POST['password'] != $_POST['confirm-password'] )    ) {
-			echo "<script> alert('Sign Up Failed, please try again'); window.location.href='../frontend/userAccess.php'; </script>";
-		}
-		else {
-			$buyerOrSeller = $_POST['accountType'];
-			$firstName = $_POST['fname'];
-			$lastName = $_POST['lname'];
-			$eMail = $_POST['email'];
-			$userName = $_POST['username'];
-			$hashed_password = hashString($_POST['password']);
+	{ 										
+		$buyerOrSeller = $_POST['accountType'];
+		$firstName = $_POST['fname'];
+		$lastName = $_POST['lname'];
+		$eMail = $_POST['email'];
+		$userName = $_POST['username'];
+		$hashed_password = hashString($_POST['password']);
 
-			//Insert Query of SQL
+
+		//check the username and email from the database
+		$usernameQuery = "SELECT * From user where username='$userName'";
+		$emailQuery = "SELECT * From user where email='$eMail'";;
+
+		if( !($connection->$usernameQuery) && !($connection->$emailQuery) )
+		{	//Insert Query of SQL
 			$query = mysqli_query($connection, "INSERT INTO `user`(`firstName`, `lastName`, `email`, `accountType`, `username`, `password`) VALUES ('$firstName','$lastName','$eMail','$buyerOrSeller','$userName','$hashed_password')");
 			if (!$query)
 				echo "<p>Insertion Failed <br/></p>";
@@ -26,19 +28,14 @@
 				session_start();
 				$_SESSION['username']=$_POST['username'];
 				$_SESSION['type']=$_POST['accountType'];
-				echo "<script> alert('Sign Up Successful, you are now logged in'); window.location.href='../frontend/homePage.php'; </script>";;
+				echo "<script> alert('Sign Up Successful, you are now logged in'); window.location.href='../frontend/homePage.php'; </script>";
 			}
 		}
-	}
-
-
-	function hashString($hashing) { // salt and hash a string
-	  $salt1 = "qm&h*";
-	  $salt2 = "pg!@";
-	  $hashing = hash('ripemd128', "$salt1$hashing$salt2");
-	  return $hashing;
+		else
+			echo "<script> alert('Input different credentials, please'); window.location.href='../frontend/userAccess.php'; </script>";
 	}
 	mysqli_close($connection); // Closing Connection with Server*/
+
 ?>
 
 
