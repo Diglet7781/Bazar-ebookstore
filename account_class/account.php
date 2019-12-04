@@ -19,7 +19,7 @@
 			$hashed_password = hashString($_POST['password']);
 
 			//Insert Query of SQL
-			$query = mysqli_query($connection, "INSERT INTO `user`(`firstName`, `lastName`, `email`, `accountType`, `username`, `password`) VALUES ('$firstName','$lastName','$eMail','$buyerOrSeller','$userName','$passWord')");
+			$query = mysqli_query($connection, "INSERT INTO `user`(`firstName`, `lastName`, `email`, `accountType`, `username`, `password`) VALUES ('$firstName','$lastName','$eMail','$buyerOrSeller','$userName','$hashed_password')");
 			if (!$query)
 				echo "<p>Insertion Failed <br/></p>";
 			else {
