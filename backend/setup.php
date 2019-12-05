@@ -1,6 +1,6 @@
 <?php
   require_once "dblogin.php";
-  $
+  $connect=createConn();
   $query = "CREATE TABLE user (
   userId INT NOT NULL AUTO_INCREMENT,
   firstName VARCHAR(128),

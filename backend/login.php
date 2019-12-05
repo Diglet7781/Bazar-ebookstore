@@ -37,13 +37,13 @@
                                     }
             }
             else{
-              echo "Login Failed";
-          header("Location:../frontend/userAccess.php");
+
+echo "<script> alert('Log in failed');  window.location.href='../frontend/userAccess.php';  </script>";
                 }
             }
             else{
-              echo "Login Failed";
-          header("Location:../frontend/userAccess.php");
+
+echo "<script> alert('Log in failed');  window.location.href='../frontend/userAccess.php'; </script>";
              }
          }
 

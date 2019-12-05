@@ -130,151 +130,150 @@
       </nav>
 
 
-      <?php
-
-require_once"../backend/dblogin.php";
-$sellerId=$_SESSION['userId'];
-
-$connect= createConn();
-
-$sqlBooks= "SELECT * FROM inventory WHERE productType='book' AND sellerid='$sellerId'";
-$sqlApparels="SELECT * FROM inventory WHERE productType='apparel' AND sellerid='$sellerId'";
-$reasult1=$connect->query($sqlApparels);
-$reasult = $connect->query($sqlBooks);
-
-
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-   <head>
-
-
-</head>
-<body>
-<main>
-<div class="container">
-<h3><font color="red">Books</font></h3>
-<table id="viewInventory" class="table table-hover table-condensed">
-    				<thead>
-						<tr>
-							<th style="width:50%">Product Name</th>
-
-							<th style="width:10%">Product Id</th>
-							<th style="width:10%">Price</th>
-                            <th style="width:10%">Qunatity</th>
-                            <th style="width:10%"></th>
-						</tr>
-                    </thead>
-
             <?php
-                	while($row = $reasult->fetch_assoc()){
-                        $productid=$row["productid"];
-                        $productName=$row["productName"];
-                        $productDescription=$row["productDescription"];
-                        $productPrice=$row["price"];
-                        $productQuantity=$row["quantity"];
-                        $picture=$row["picture"];
-                    ?>
-                    <tbody>
-						<tr>
-							<td data-th="Product Name">
-								<div class="row">
-									<div class="col-sm-2 hidden-xs"><img src=<?php echo $picture ?> alt="..." class="img-responsive"/></div>
-									<div class="col-sm-10">
-										<h4 class="nomargin"><?php echo $productName ?></h4>
 
-                                    </div>
+      require_once"../backend/dblogin.php";
+      $userId=$_SESSION['userId'];
 
-								</div>
+      $connect= createConn();
 
-                            </td>
-
-                            <td datai-th="Product Id"><?php echo $productid ?></td>
+      $sqlBooks= "SELECT * FROM inventory WHERE productType='book' AND sellerid='$userId'";
+      $sqlApparels="SELECT * FROM inventory WHERE productType='apparel' AND sellerid='$userId'";
+      $reasult1=$connect->query($sqlApparels);
+      $reasult = $connect->query($sqlBooks);
 
 
-							<td data-th="Price"><?php echo $productPrice ?></td>
-							<td data-th="Quantity">
-								<?php echo $productQuantity?>
-                            </td>
-                            <td class="actions" data-th="">
-                            <a href='../backend/editInventory.php?id=<?php echo $productid?>' class="btn btn-info btn-sm"><i class="fa fa-refresh"></i>Update</a>
-                            <a href="../backend/deleteItem.php?id=<?php echo $productid?>" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i>delete</a>
-							</td>
-                        </tr>
-                        <?php
-						}
+      ?>
 
-                    ?>
+      <!DOCTYPE html>
+      <html lang="en">
+         <head>
 
 
+      </head>
+      <body>
+      <main>
+      <div class="container">
+      <h3><font color="red">Books</font></h3>
+      <table id="viewInventory" class="table table-hover table-condensed">
+          				<thead>
+      						<tr>
+      							<th style="width:50%">Product Name</th>
+      							<th style="width:20%">Description</th>
+      							<th style="width:10%">Product Id</th>
+      							<th style="width:10%">Price</th>
+                                  <th style="width:10%">Qunatity</th>
+                                  <th style="width:10%"></th>
+      						</tr>
+                          </thead>
 
-					</tbody>
+                  <?php
+                      	while($row = $reasult->fetch_assoc()){
+                              $productid=$row["productid"];
+                              $productName=$row["productName"];
+                              $productDescription=$row["productDescription"];
+                              $productPrice=$row["price"];
+                              $productQuantity=$row["quantity"];
+                              $picture=$row["picture"];
+                          ?>
+                          <tbody>
+      						<tr>
+      							<td data-th="Product Name">
+      								<div class="row">
+      									<div class="col-sm-2 hidden-xs"><img src=<?php echo $picture ?> alt="..." class="img-responsive"/></div>
+      									<div class="col-sm-10">
+      										<h4 class="nomargin"><?php echo $productName ?></h4>
 
-                    </tfoot>
-                </table>
-                <button>  <a href="addInventory.php" class="class="btn btn-success"><i class="fa fa-file"></i>Add</a></button>
-                <h3><font color="red">Apparels</font></h3>
-                <table id="viewInventory" class="table table-hover table-condensed">
-    				<thead>
-						<tr>
-							<th style="width:50%">Product Name</th>
+                                          </div>
 
-							<th style="width:10%">Product Id</th>
-							<th style="width:10%">Price</th>
-                            <th style="width:10%">Qunatity</th>
-                            <th style="width:10%"></th>
-						</tr>
-                    </thead>
+      								</div>
 
-            <?php
-                	while($row1 = $reasult1->fetch_assoc()){
-                        $productid=$row1["productid"];
-                        $productName=$row1["productName"];
-                        $productDescription=$row1["productDescription"];
-                        $productPrice=$row1["price"];
-                        $productQuantity=$row1["quantity"];
-                        $picture=$row1["picture"];
-                    ?>
-                    <tbody>
-						<tr>
-							<td data-th="Product Name">
-								<div class="row">
-									<div class="col-sm-2 hidden-xs"><img src=<?php echo $picture ?> alt="..." class="img-responsive"/></div>
-									<div class="col-sm-10">
-										<h4 class="nomargin"><?php echo $productName ?></h4>
-
-                                    </div>
-
-								</div>
-
-                            </td>
-                          
-                            <td datai-th="Product Id"><?php echo $productid ?></td>
+                                  </td>
+                                  <td datai-th="Description"><?php echo $productDescription ?></td>
+                                  <td datai-th="Product Id"><?php echo $productid ?></td>
 
 
-							<td data-th="Price"><?php echo $productPrice ?></td>
-							<td data-th="Quantity">
-								<?php echo $productQuantity?>
-                            </td>
-                            <td class="actions" data-th="">
-                              <a href='editInventory.php?id=<?php echo $productid?>' class="btn btn-info btn-sm"><i class="fa fa-refresh"></i>Update</a>
-                              <a href="../backend/deleteItem.php?id=<?php echo $productid?>" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i>delete</a>
-              </td>
-                        </tr>
-                        <?php
-            }
+      							<td data-th="Price"><?php echo $productPrice ?></td>
+      							<td data-th="Quantity">
+      								<?php echo $productQuantity?>
+                                  </td>
+                                  <td class="actions" data-th="">
+                                  <a href='../backend/editInventory.php?id=<?php echo $productid?>' class="btn btn-info btn-sm"><i class="fa fa-refresh"></i>Update</a>
+                                  <a href="../backend/deleteItem.php?id=<?php echo $productid?>" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i>delete</a>
+      							</td>
+                              </tr>
+                              <?php
+      						}
 
-                    ?>
+                          ?>
 
 
 
-          </tbody>
+      					</tbody>
 
-                    </tfoot>
-                </table>
-                  <button>  <a href="addInventory.php" class="class="btn btn-success"><i class="fa fa-file"></i>Add</a></button>
+                          </tfoot>
+                      </table>
+                      <button>  <a href="addInventory.php" class="class="btn btn-success"><i class="fa fa-file"></i>Add</a></button>
+                      <h3><font color="red">Apparels</font></h3>
+                      <table id="viewInventory" class="table table-hover table-condensed">
+          				<thead>
+      						<tr>
+      							<th style="width:50%">Product Name</th>
+      							<th style="width:20%">Description</th>
+      							<th style="width:10%">Product Id</th>
+      							<th style="width:10%">Price</th>
+                                  <th style="width:10%">Qunatity</th>
+                                  <th style="width:10%"></th>
+      						</tr>
+                          </thead>
 
+                  <?php
+                      	while($row1 = $reasult1->fetch_assoc()){
+                              $productid=$row1["productid"];
+                              $productName=$row1["productName"];
+                              $productDescription=$row1["productDescription"];
+                              $productPrice=$row1["price"];
+                              $productQuantity=$row1["quantity"];
+                              $picture=$row1["picture"];
+                          ?>
+                          <tbody>
+      						<tr>
+      							<td data-th="Product Name">
+      								<div class="row">
+      									<div class="col-sm-2 hidden-xs"><img src=<?php echo $picture ?> alt="..." class="img-responsive"/></div>
+      									<div class="col-sm-10">
+      										<h4 class="nomargin"><?php echo $productName ?></h4>
+
+                                          </div>
+
+      								</div>
+
+                                  </td>
+                                  <td datai-th="Description"><?php echo $productDescription ?></td>
+                                  <td datai-th="Product Id"><?php echo $productid ?></td>
+
+
+      							<td data-th="Price"><?php echo $productPrice ?></td>
+      							<td data-th="Quantity">
+      								<?php echo $productQuantity?>
+                                  </td>
+                                  <td class="actions" data-th="">
+                                    <a href='editInventory.php?id=<?php echo $productid?>' class="btn btn-info btn-sm"><i class="fa fa-refresh"></i>Update</a>
+                                    <a href="../backend/deleteItem.php?id=<?php echo $productid?>" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i>delete</a>
+                    </td>
+                              </tr>
+                              <?php
+                  }
+
+                          ?>
+
+
+
+                </tbody>
+
+                          </tfoot>
+                      </table>
+                        <button>  <a href="addInventory.php" class="class="btn btn-success"><i class="fa fa-file"></i>Add</a></button>
 
       <div class="footer">
          <div id="button"></div>

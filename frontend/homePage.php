@@ -224,7 +224,7 @@ while($row=$result1->fetch_assoc()){
 
                 <form method="get">
                 <button  name="addToCart" type="submit">
-                  <a href="homePage.php?id=<?php echo $row['productid'];?>">Add to cart</a> </button>
+                  <a href="../backend/addToCart.php?id=<?php echo $row['productid'];?>">Add to cart</a> </button>
 
 </form>
               <!---add to cart functionality -->
